@@ -1,4 +1,4 @@
-const { Thought } = require('../models');
+const { Todo, User } = require('../models');
 // const { signToken } = require('../utils/auth');
 
 
@@ -7,41 +7,20 @@ const { Thought } = require('../models');
 
 const resolvers = {
   Query: {
-    thoughts: async () => {
-      return Thought.find();
+    users: async () => {
+      return User.find()
     },
-
-    thought: async (parent, { thoughtId }) => {
-      return Thought.findOne({ _id: thoughtId });
+    user: async (parent, { userId }) => {
+      return User.findOne({ _id: userId})
     },
+    todos: async(parent, { username }) => {
+      const params = username ? { username }: {}
+      return Todo.find(params).sort({createdAt: -1})
+    }
   },
 
   Mutation: {
-    addThought: async (parent, { thoughtText, thoughtAuthor }) => {
-      return Thought.create({ thoughtText, thoughtAuthor });
-    },
-    addComment: async (parent, { thoughtId, commentText }) => {
-      return Thought.findOneAndUpdate(
-        { _id: thoughtId },
-        {
-          $addToSet: { comments: { commentText } },
-        },
-        {
-          new: true,
-          runValidators: true,
-        }
-      );
-    },
-    removeThought: async (parent, { thoughtId }) => {
-      return Thought.findOneAndDelete({ _id: thoughtId });
-    },
-    removeComment: async (parent, { thoughtId, commentId }) => {
-      return Thought.findOneAndUpdate(
-        { _id: thoughtId },
-        { $pull: { comments: { _id: commentId } } },
-        { new: true }
-      );
-    },
+    
   },
 };
 
