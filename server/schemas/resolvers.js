@@ -1,3 +1,4 @@
+const { AuthenticationError } = require('apollo-server-express');
 const { Todo, User } = require('../models');
 // const { signToken } = require('../utils/auth');
 
@@ -20,7 +21,54 @@ const resolvers = {
   },
 
   Mutation: {
-    
+    addUser: async (parent, { username, password }) => {
+      const user = await User.create({ username, password });
+      return { user };
+    },
+    login: async (parent, {username, password}) => {
+      const user = await User.findOne({username})
+      if (!user){
+        throw new AuthenticationError('No user found with that username')
+      }
+
+      const correctPw = await user.isCorrectPassword(password)
+
+      if (!correctPw){
+        throw new AuthenticationError("Incorrect credentials")
+      }
+
+      return {user}
+    },
+    addTodo: async (parent, { todoText }, context) => {
+      if (context.user) {
+        const todo = await Todo.create({ todoText })
+      
+
+      await User.findOneAndUpdate(
+        {_id: context.user._id},
+        { $addToSet: { todos: todo._id }}
+      )
+
+      return todo
+      }
+      throw new AuthenticationError('You need to be logged in')
+    },
+    removeTodo: async (parent, { todoId }, context) => {
+      if (context.user) {
+        const todo = await Todo.findOneAndDelete({
+          _id: todoId
+        })
+      
+
+      await User.findOneAndUpdate(
+        {_id: context.user._id},
+        { $pull: { todos: todo._id}}
+      )
+
+      return todo
+      }
+      throw new AuthenticationError('You need to be logged in')
+    }
   },
 };
 
