@@ -1,3 +1,5 @@
-const Thought = require('./Thought');
+const User = require('./User');
+const Column = require('./Column');
+const Todo = require('./Todo');
 
-module.exports = { Thought };
+module.exports = { User, Column, Todo };
