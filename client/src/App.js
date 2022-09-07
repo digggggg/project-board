@@ -1,8 +1,10 @@
 import React from 'react'
 import Home from './pages/Home'
+import Login from './pages/Login'
 
-// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink} from '@apollo/client';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -30,8 +32,21 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-        <Home />
-
+      <Router>
+        <div className='container'>
+          <Routes>
+            <Route
+              path="/"
+              element={<Home />} 
+            />
+            <Route 
+              path="/login" 
+              element={<Login />} 
+            />
+          </Routes>
+        </div>
+      </Router>
+        
     </ApolloProvider>
   );
 }
