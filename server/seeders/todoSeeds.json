@@ -1,17 +1,22 @@
 [
   {
-    "todoText": "I have nothing to do but sit on this website and ponder my choices"
+    "todoText": "I have nothing to do but sit on this website and ponder my choices",
+    "todoAuthor": "Michele"
   },
   {
-    "todoText": " Feed Benji"
+    "todoText": " Feed Benji",
+    "todoAuthor": "Michele"
   },
   {
-    "todoText": "Take Benji to the park"
+    "todoText": "Take Benji to the park",
+    "todoAuthor": "Michele"
   },
   {
-    "todoText": "Take Benji on a roller coaster through outerspace"
+    "todoText": "Take Benji on a roller coaster through outerspace",
+    "todoAuthor": "Michele"
   },
   {
-    "todoText": "Let my dog take me on a walk"
+    "todoText": "Let my dog take me on a walk",
+    "todoAuthor": "TESTINGACC"
   }
 ]

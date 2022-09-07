@@ -42,11 +42,11 @@ const resolvers = {
     },
     addTodo: async (parent, { todoText }, context) => {
       if (context.user) {
-        const todo = await Todo.create({ todoText })
+        const todo = await Todo.create({ todoText, todoAuthor })
       
 
       await User.findOneAndUpdate(
-        {_id: context.user._id},
+        {username: todoAuthor},
         { $addToSet: { todos: todo._id }}
       )
 
