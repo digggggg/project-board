@@ -1,4 +1,9 @@
 const { Thought } = require('../models');
+// const { signToken } = require('../utils/auth');
+
+
+
+
 
 const resolvers = {
   Query: {
