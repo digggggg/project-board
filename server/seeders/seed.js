@@ -1,11 +1,19 @@
 const db = require('../config/connection');
-const { Thought } = require('../models');
-const thoughtSeeds = require('./thoughtSeeds.json');
+const { User, Todo } = require('../models');
+const todoSeeds = require('./todoSeeds.json');
+const userSeeds = require('./userSeeds.json')
 
 db.once('open', async () => {
-  await Thought.deleteMany({});
-  await Thought.create(thoughtSeeds);
+  try { 
 
+  await Todo.deleteMany({});
+  await User.deleteMany({})
+
+  // await User.create(userSeeds)
+
+  } catch {
+
+  }
   console.log('all done!');
   process.exit(0);
 });
