@@ -12,11 +12,17 @@ const resolvers = {
       return User.find()
     },
     user: async (parent, { userId }) => {
-      return User.findOne({ _id: userId})
+      return User.findOne({ _id: userId}).populate('todos')
     },
     todos: async(parent, { username }) => {
       const params = username ? { username }: {}
       return Todo.find(params).sort({createdAt: -1})
+    },
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id }).populate('todos');
+      }
+      throw new AuthenticationError('You need to be logged in!');
     }
   },
 

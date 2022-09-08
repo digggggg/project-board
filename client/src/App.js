@@ -52,7 +52,7 @@ function App() {
             />
             <Route 
               path="/todo" 
-              element={<Todo />} 
+              element={<Todo />}
             />
             <Route 
               path="/logout"

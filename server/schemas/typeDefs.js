@@ -15,15 +15,16 @@ const typeDefs = gql`
     createdAt: String
   }
 
+  type Auth {
+    token: ID!
+    user: User
+  }
+
   type Query {
     users: [User]
     user(username: String!): User
     todos(username: String): [Todo]
-  }
-
-  type Auth {
-    token: ID!
-    user: User
+    me: User
   }
 
   type Mutation {

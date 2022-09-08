@@ -8,7 +8,7 @@ const Logout = () => {
     
     return (
         <>
-            <button className='btn primary' onClick={Auth.logout}>Logout</button>
+            <button className='btn primary btn-info' onClick={Auth.logout}>Logout</button>
             <button className='btn primary' onClick={toHome}>To Home</button>
         </>
         )

@@ -47,9 +47,7 @@ const Login = (props) => {
           <h4 className="card-header bg-dark text-light p-2">Login</h4>
           <div className="card-body">
             {data ? (
-              
                 <Navigate to="/todo" replace={true}/>
-              
             ) : (
               <form onSubmit={handleFormSubmit}>
                 <input
