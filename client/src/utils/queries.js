@@ -20,6 +20,7 @@ export const QUERY_TODOS = gql`
         todos {
             _id
             todoText
+            todoAuthor
             createdAt
         }
     }

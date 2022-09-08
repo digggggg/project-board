@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 
@@ -47,10 +47,9 @@ const Login = (props) => {
           <h4 className="card-header bg-dark text-light p-2">Login</h4>
           <div className="card-body">
             {data ? (
-              <p>
-                Success! You may now head{' '}
-                <Link to="/todo">back to the homepage.</Link>
-              </p>
+              
+                <Navigate to="/todo" replace={true}/>
+              
             ) : (
               <form onSubmit={handleFormSubmit}>
                 <input

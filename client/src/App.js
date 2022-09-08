@@ -3,6 +3,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Todo from './pages/ToDo'
+import Logout from './pages/Logout'
 
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -52,6 +53,10 @@ function App() {
             <Route 
               path="/todo" 
               element={<Todo />} 
+            />
+            <Route 
+              path="/logout"
+              element={<Logout />}
             />
           </Routes>
         </div>
